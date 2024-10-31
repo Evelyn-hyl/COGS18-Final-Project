@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>TO DO LIST</title>
+{% endblock %}
+
+{% block body %}
+<div id="main">
+    <div id="title">
+        <h1 class="header-text text-center text-light">TO DO LIST</h1>
+    </div>
+    <div class="container">
+        <div class="main-table">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-6" scope="col"><a class="text-green">Item</div></th>
+                        <th class="col-3" scope="col"><a class="text-green">Priority</div></th>
+                        <th class="col-3" scope="col"><a class="text-green">Action</div></th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                    {% for item in items %}
+                        <tr>
+                            <th scope="row"><span class="text-green">{{ item.item }}</span></th>
+                            <td><span class="text-green">{{ item.priority }}</span></td>
+                            <td>
+                                <a class="btn btn-danger" href="/delete/{{item.id}}" role="button">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+            </table>
+           
+            <p class="d-inline-flex gap-1">
+                <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
+                  Add Task
+                </a>
+            </p>
+            <div class="collapse" id="collapseForm">
+            <div class="card card-body input-group">
+                <form action="/" method="POST">
+                    <div class="input-group mb-3">
+                        <input type="text" name="taskname" class="form-control" placeholder="Get groceries with roomates..." aria-label="Task Name">
+                        <span class="input-group-text">Priority</span>
+                        <input type="number" name="taskpriority" class="form-control" placeholder="1, 2, 3..." aria-label="Priority">
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-success"></input>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
